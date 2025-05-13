@@ -55,28 +55,28 @@ const Certificates = () => {
       title: 'Digital Transformation in Financial Services',
       issuer: 'Coursera',
       year: 2025,
-      imageUrl: '/src/assets/photos/certificate1.jpg',
+      imageUrl: new URL('../assets/photos/certificate1.jpg', import.meta.url).href,
     },
     {
       id: 2,
       title: 'Natural Disaster and Climate Change Risk Assessment',
       issuer: 'Coursera',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate2.jpg',
+      imageUrl: new URL('../assets/photos/certificate2.jpg', import.meta.url).href,
     },
     {
       id: 3,
       title: 'Finance for Everyone',
       issuer: 'Coursera',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate3.jpg',
+      imageUrl: new URL('../assets/photos/certificate3.jpg', import.meta.url).href,
     },
     {
       id: 4,
       title: 'The Basics of Google Cloud Compute',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate4.png',
+      imageUrl: new URL('../assets/photos/certificate4.png', import.meta.url).href,
       badgeUrl: 'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/11892530',
     },
     {
@@ -84,7 +84,7 @@ const Certificates = () => {
       title: 'Get Started with Cloud Storage',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate5.png',
+      imageUrl: new URL('../assets/photos/certificate5.png', import.meta.url).href,
       badgeUrl: 'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/11893706',
     },
     {
@@ -92,7 +92,7 @@ const Certificates = () => {
       title: 'Get Started with Looker',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate6.png',
+      imageUrl: new URL('../assets/photos/certificate6.png', import.meta.url).href,
       badgeUrl: 'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/11978101'
     },
     {
@@ -100,7 +100,7 @@ const Certificates = () => {
       title: 'Get Started with Dataplex',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate7.png',
+      imageUrl: new URL('../assets/photos/certificate7.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12096729'
     },
     {
@@ -108,7 +108,7 @@ const Certificates = () => {
       title: 'Cloud Run Functions: 3 Ways',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate8.png',
+      imageUrl: new URL('../assets/photos/certificate8.png', import.meta.url).href,
       badgeUrl: 'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12101031'
     },
     {
@@ -116,7 +116,7 @@ const Certificates = () => {
       title: 'App Engine: 3 Ways',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate9.png',
+      imageUrl: new URL('../assets/photos/certificate9.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12118124'
     },
     {
@@ -124,7 +124,7 @@ const Certificates = () => {
       title: 'Get Started with API Gateway',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate10.png',
+      imageUrl: new URL('../assets/photos/certificate10.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12120043'
     },
     {
@@ -132,7 +132,7 @@ const Certificates = () => {
       title: 'Cloud Speech API: 3 Ways',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate11.png',
+      imageUrl: new URL('../assets/photos/certificate11.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12179548'
     },
     {
@@ -140,7 +140,7 @@ const Certificates = () => {
       title: 'Monitoring in Google Cloud',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate12.png',
+      imageUrl: new URL('../assets/photos/certificate12.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12182633'
     },
     {
@@ -148,7 +148,7 @@ const Certificates = () => {
       title: 'Networking Fundamentals on Google Cloud',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate13.png',
+      imageUrl: new URL('../assets/photos/certificate13.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12222990'
     },
     {
@@ -156,7 +156,7 @@ const Certificates = () => {
       title: 'Analyze Images with the Cloud Vision API',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate14.png',
+      imageUrl: new URL('../assets/photos/certificate14.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12223644'
     },
     {
@@ -164,7 +164,7 @@ const Certificates = () => {
       title: 'Get Started with Pub/Sub',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate15.png',
+      imageUrl: new URL('../assets/photos/certificate15.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12223958'
     },
     {
@@ -172,7 +172,7 @@ const Certificates = () => {
       title: 'Get Started with Google Workspace Tools',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate16.png',
+      imageUrl: new URL('../assets/photos/certificate16.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12259968'
     },
     {
@@ -180,7 +180,7 @@ const Certificates = () => {
       title: 'Prompt Design in Vertex AI',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate17.png',
+      imageUrl: new URL('../assets/photos/certificate17.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12315604'
     },
     {
@@ -188,7 +188,7 @@ const Certificates = () => {
       title: 'Develop GenAI Apps with Gemini and Streamlit',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate18.png',
+      imageUrl: new URL('../assets/photos/certificate18.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12321784'
     },
     {
@@ -196,7 +196,7 @@ const Certificates = () => {
       title: 'Level 3: Google Cloud Adventures',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate19.png',
+      imageUrl: new URL('../assets/photos/certificate19.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12333674'
     },
     {
@@ -204,7 +204,7 @@ const Certificates = () => {
       title: 'Introduction to Generative AI',
       issuer: 'Google Cloud',
       year: 2024,
-      imageUrl: '/src/assets/photos/certificate20.png',
+      imageUrl: new URL('../assets/photos/certificate20.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12334028'
     },
     {
@@ -212,7 +212,7 @@ const Certificates = () => {
       title: 'Build Real World AI Applications with Gemini and Imagen',
       issuer: 'Google Cloud',
       year: 2025,
-      imageUrl: '/src/assets/photos/certificate21.png',
+      imageUrl: new URL('../assets/photos/certificate21.png', import.meta.url).href,
       badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/15293770'
     },
     {
@@ -220,35 +220,35 @@ const Certificates = () => {
       title: 'Certificate of Participation of Workshop in Collaboration with Nextleap',
       issuer: 'Nextleap',
       year: 2025,
-      imageUrl: '/src/assets/photos/certificate22.jpg',
+      imageUrl: new URL('../assets/photos/certificate22.jpg', import.meta.url).href,
     },
     {
       id: 23,
       title: 'Hackmol 6.0',
       issuer: 'GDG NIT Jalandhar',
       year: 2025,
-      imageUrl: '/src/assets/photos/certificate23.png',
+      imageUrl: new URL('../assets/photos/certificate23.png', import.meta.url).href,
     },
     {
       id: 24,
       title: 'VR Wellness: Innovating Mental Health Through Virtual Reality',
       issuer: 'GFG CUIET Student Chapter',
       year: 2025,
-      imageUrl: '/src/assets/photos/certificate24.png',
+      imageUrl: new URL('../assets/photos/certificate24.png', import.meta.url).href,
     },
     {
       id: 25,
       title: 'Google Study Jam ',
       issuer: 'GDG Chitkara University',
       year: 2025,
-      imageUrl: '/src/assets/photos/certificate25.jpg',
+      imageUrl: new URL('../assets/photos/certificate25.jpg', import.meta.url).href,
     },
     {
       id: 26,
       title: 'Build With India',
       issuer: 'Hack With India',
       year: 2025,
-      imageUrl: '/src/assets/photos/certificate26.png',
+      imageUrl: new URL('../assets/photos/certificate26.png', import.meta.url).href,
     }
   ];
 

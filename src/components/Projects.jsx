@@ -4,21 +4,21 @@ const projects = [
   {
     title: "Task Management System",
     description: "A full-stack productivity platform for managing tasks, users, and shop products. The backend is built with Flask (REST API), and the frontend is a Django web application.",
-    image: "/src/assets/photos/project1.jpg",
+    image: new URL('../assets/photos/project1.jpg', import.meta.url).href,
     technologies: ["Flask", "Django", "Python"],
     link: "https://github.com/KeshavxGupta/TaskMaster"
   },
   {
     title: "Farming Management System",
     description: "A comprehensive web application for modern farming management, providing real-time monitoring, crop prediction, and farm management tools.",
-    image: "/src/assets/photos/project2.png",
+    image: new URL('../assets/photos/project2.png', import.meta.url).href,
     technologies: ["Web Development", "Agriculture Tech"],
     link: "https://github.com/Naitik355/Hackmol"
   },
   {
     title: "Image Gallery",
     description: "A responsive image gallery application leveraging vanilla HTML, CSS, and JavaScript to deliver fluid animations, adaptive layout, and intuitive design without external frameworks.",
-    image: "/src/assets/photos/project3.png",
+    image: new URL('../assets/photos/project3.png', import.meta.url).href,
     technologies: ["HTML", "CSS", "JavaScript"],
     link: "https://github.com/KeshavxGupta/IMAGE-GALLERY"
   }
