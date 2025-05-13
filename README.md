@@ -31,8 +31,8 @@ A cutting-edge, responsive personal portfolio showcasing my professional journey
 ### Installation & Setup
 1. Clone the repository
    ```bash
-   git clone https://github.com/KeshavxGupta/my-portfolio.git
-   cd my-portfolio
+   git clone https://github.com/KeshavxGupta/portfolio.git
+   cd portfolio
    ```
 2. Install dependencies
    ```bash
