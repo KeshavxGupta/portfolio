@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Body base styles */
+html, body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #000000;
+  background: linear-gradient(to bottom, #000000, #0a0a0a);
+  color: #ffffff;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove default margins and paddings, and set box-sizing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Optional: Custom scrollbar styling for modern look */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #181818; /* dark */
+}
+::-webkit-scrollbar-thumb {
+  background: #00eaff; /* brightBlue */
+  border-radius: 4px;
+}
+
+/* Optional: Selection color for a branded feel */
+::selection {
+  background: #00eaff; /* brightBlue */
+  color: #181818;      /* dark */
+}
