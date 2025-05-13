@@ -22,34 +22,6 @@ A cutting-edge, responsive personal portfolio showcasing my professional journey
 - 📬 Interactive contact section
 - 🚀 Performance-optimized single-page application
 
-## 🔧 Getting Started
-
-### Prerequisites
-- Node.js (v16+)
-- npm (v8+)
-
-### Installation & Setup
-1. Clone the repository
-   ```bash
-   git clone https://github.com/KeshavxGupta/portfolio.git
-   cd portfolio
-   ```
-2. Install dependencies
-   ```bash
-   npm install
-   ```
-
-3. Run development server
-   ```bash
-   npm run dev
-   ```
-
-### Development Scripts
-- `npm run dev`: Start local development server
-- `npm run build`: Create production build
-- `npm run preview`: Preview production build
-- `npm run lint`: Run code quality checks
-
 ## 🌟 Website Structure
 - **Home:** Engaging introduction
 - **About:** Comprehensive personal background
@@ -62,14 +34,6 @@ A cutting-edge, responsive personal portfolio showcasing my professional journey
 - Code-splitting and lazy loading
 - Optimized assets and minimal bundle size
 
-## 🤝 Contributing
-Contributions are welcome! Please follow these steps:
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some feature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
 ## 📄 License
 - Personal project
 - All rights reserved
@@ -77,7 +41,7 @@ Contributions are welcome! Please follow these steps:
 ## 📞 Let's Connect
 - **Email:** keshav035306@gmail.com
 - **LinkedIn:** https://linkedin.com/in/keshav-gupta-751925324
-- **Personal Website:** [Live Portfolio URL]
+- **Personal Website:** https://portfolio-ivory-theta-16.vercel.app/
 
 ## 🌈 Acknowledgments
 - Inspired by modern web design trends
