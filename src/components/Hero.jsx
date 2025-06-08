@@ -48,24 +48,23 @@ function Hero() {
       id="hero"
     >
       {/* Animated Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
         <div className="absolute animate-pulse top-[10%] left-[5%] w-24 h-24 bg-brightBlue rounded-full blur-3xl"></div>
         <div className="absolute animate-pulse top-[70%] right-[15%] w-32 h-32 bg-green rounded-full blur-3xl"></div>
         <div className="absolute animate-pulse bottom-[20%] left-[30%] w-16 h-16 bg-cyan-500 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative z-10 text-center max-w-5xl mx-auto space-y-6 px-4">
+      <div className="relative z-10 max-w-5xl px-4 mx-auto space-y-6 text-center">
         <div className="relative space-y-4">
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-brightBlue to-green animate-fade-in-up">
+          <h1 className="text-5xl font-black tracking-tight text-transparent md:text-7xl bg-clip-text bg-gradient-to-r from-brightBlue to-green animate-fade-in-up">
             Hi, I'm <span className="text-white">Keshav Gupta</span>
           </h1>
-          <h2 className="text-2xl md:text-4xl font-bold text-gray-300 animate-fade-in-up animation-delay-200">
-            <div className="relative inline-flex flex-wrap justify-center items-center gap-2 md:gap-4 group">
+          <h2 className="text-2xl font-bold text-gray-300 md:text-4xl animate-fade-in-up animation-delay-200">
+            <div className="relative inline-flex flex-wrap items-center justify-center gap-2 md:gap-4 group">
               {[
                 { text: 'Full-Stack Developer', gradient: 'from-brightBlue to-green', borderColor: 'border-brightBlue' },
                 { text: 'Creative Innovator', gradient: 'from-green to-yellow', borderColor: 'border-green' },
                 { text: 'AI Enthusiast', gradient: 'from-yellow to-cyan-500', borderColor: 'border-yellow' },
-                { text: 'Tech Enthusiast', gradient: 'from-cyan-500 to-purple-500', borderColor: 'border-cyan-500' }
               ].map((role, index) => (
                 <React.Fragment key={role.text}>
                   <span 
@@ -88,20 +87,15 @@ function Hero() {
           </h2>
         </div>
         <div className="max-w-3xl mx-auto text-xl md:text-2xl text-gray-400 leading-relaxed animate-fade-in-up animation-delay-400 min-h-[120px]">
-          <p className="inline-block bg-opacity-50 bg-dark px-2 py-1 rounded-md">
+          <p className="inline-block px-2 py-1 bg-opacity-50 rounded-md bg-dark">
             {typedText}
             <span className="animate-blink text-green">|</span>
           </p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
           <a
             href="#projects"
-            className="inline-flex items-center justify-center gap-3 px-10 py-4 text-lg font-bold uppercase tracking-wider 
-            transition duration-300 ease-in-out transform 
-            bg-gradient-to-r from-brightBlue to-green 
-            text-dark hover:from-green hover:to-brightBlue 
-            hover:-translate-y-1 hover:scale-105 
-            rounded-full shadow-2xl group"
+            className="inline-flex items-center justify-center gap-3 px-10 py-4 text-lg font-bold tracking-wider uppercase transition duration-300 ease-in-out transform rounded-full shadow-2xl bg-gradient-to-r from-brightBlue to-green text-dark hover:from-green hover:to-brightBlue hover:-translate-y-1 hover:scale-105 group"
           >
             <span>Explore My Projects</span>
             <svg 
