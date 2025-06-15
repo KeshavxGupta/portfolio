@@ -109,7 +109,7 @@ function Hero() {
             </svg>
           </a>
           <a
-            href="https://drive.google.com/file/d/11c3kQgzj7nW4SjwZcF4UFe122rtckkbb/view?usp=drivesdk"
+            href="https://drive.google.com/file/d/17Un-C0nrIjA-5zkfbo_XSaBanqLkLUCi/view?usp=drive_link"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-8 py-3 font-semibold transition rounded-full shadow-lg bg-green text-dark hover:bg-green-400 hover:text-dark animate-bounce-subtle animation-delay-200 group"
