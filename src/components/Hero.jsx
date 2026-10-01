@@ -1,134 +1,172 @@
-// src/components/Hero.jsx
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { personalInfo } from '../data/portfolioData';
+import { SiGithub, SiLinkedin } from 'react-icons/si';
+import InteractiveTerminal from './InteractiveTerminal';
 
-import React, { useState, useEffect } from 'react';
+const Hero = ({ onOpenResume, onOpenCommandPalette }) => {
+  const [copied, setCopied] = useState(false);
 
-function Hero() {
-  const [typedText, setTypedText] = useState('');
-  const fullTexts = [
-    "Designing user-centric web experiences that blend creativity with functionality.",
-    "Developing scalable web systems across diverse domains, from media management to workflow tools.",
-    "Thriving in fast-paced hackathon environments with adaptable, team-driven development."
-  ];
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-
-  useEffect(() => {
-    let currentIndex = 0;
-    let isDeleting = false;
-    const fullText = fullTexts[currentTextIndex];
-
-    const typingInterval = setInterval(() => {
-      if (!isDeleting && currentIndex <= fullText.length) {
-        setTypedText(fullText.slice(0, currentIndex));
-        currentIndex++;
-
-        if (currentIndex === fullText.length) {
-          setTimeout(() => {
-            isDeleting = true;
-          }, 2000);
-        }
-      } else if (isDeleting && currentIndex >= 0) {
-        setTypedText(fullText.slice(0, currentIndex));
-        currentIndex--;
-
-        if (currentIndex === 0) {
-          isDeleting = false;
-          setCurrentTextIndex((prevIndex) => 
-            (prevIndex + 1) % fullTexts.length
-          );
-        }
-      }
-    }, 50);
-
-    return () => clearInterval(typingInterval);
-  }, [currentTextIndex]);
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(personalInfo.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <section
-      className="relative flex flex-col items-center justify-center min-h-screen px-4 text-white bg-gradient-to-b from-[#121212] via-[#1a232a] to-[#121212] overflow-hidden py-16"
       id="hero"
+      className="relative min-h-screen flex flex-col justify-center items-center pt-28 pb-16 px-4 sm:px-6"
     >
-      {/* Animated Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
-        <div className="absolute animate-pulse top-[10%] left-[5%] w-24 h-24 bg-brightBlue rounded-full blur-3xl"></div>
-        <div className="absolute animate-pulse top-[70%] right-[15%] w-32 h-32 bg-green rounded-full blur-3xl"></div>
-        <div className="absolute animate-pulse bottom-[20%] left-[30%] w-16 h-16 bg-cyan-500 rounded-full blur-3xl"></div>
-      </div>
+      <div className="w-full max-w-4xl mx-auto text-center space-y-10">
+        
+        {/* Availability & Timezone Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/90 border border-zinc-800 text-xs text-zinc-300 shadow-xl backdrop-blur-md"
+        >
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="font-semibold text-emerald-400">{personalInfo.status}</span>
+          <span className="text-zinc-600 hidden sm:inline">•</span>
+          <span className="text-zinc-400 hidden sm:inline">India (IST / UTC+5:30)</span>
+          <span className="text-zinc-600 hidden md:inline">•</span>
+          <button
+            onClick={onOpenCommandPalette}
+            className="hidden md:inline-flex items-center gap-1 text-[11px] text-zinc-400 hover:text-white transition-colors cursor-pointer"
+          >
+            <span className="px-1.5 py-0.5 rounded bg-zinc-800 border border-zinc-700/80 font-mono text-[10px]">Ctrl+K</span>
+            <span>Menu</span>
+          </button>
+        </motion.div>
 
-      <div className="relative z-10 max-w-5xl px-4 mx-auto space-y-6 text-center">
-        <div className="relative space-y-4">
-          <h1 className="text-5xl font-black tracking-tight text-transparent md:text-7xl bg-clip-text bg-gradient-to-r from-brightBlue to-green animate-fade-in-up">
-            Hi, I'm <span className="text-white">Keshav Gupta</span>
+        {/* Main Headline with Framer Motion */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="space-y-4"
+        >
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white leading-[1.1]">
+            Engineering scalable systems <br className="hidden sm:inline" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 via-zinc-400 to-zinc-600">
+              and AI applications.
+            </span>
           </h1>
-          <h2 className="text-2xl font-bold text-gray-300 md:text-4xl animate-fade-in-up animation-delay-200">
-            <div className="relative inline-flex flex-wrap items-center justify-center gap-2 md:gap-4 group">
-              {[
-                { text: 'Full-Stack Developer', gradient: 'from-brightBlue to-green', borderColor: 'border-brightBlue' },
-                { text: 'Creative Innovator', gradient: 'from-green to-yellow', borderColor: 'border-green' },
-                { text: 'AI Enthusiast', gradient: 'from-yellow to-cyan-500', borderColor: 'border-yellow' },
-              ].map((role, index) => (
-                <React.Fragment key={role.text}>
-                  <span 
-                    className={`
-                      relative bg-gradient-to-r ${role.gradient} bg-clip-text text-transparent 
-                      px-2 py-1 rounded-md transition-all duration-300 
-                      group-hover:opacity-50 group-hover:blur-[1px]
-                      hover:!opacity-100 hover:!blur-none
-                      cursor-default
-                      inline-flex items-center justify-center
-                      ${index < 3 ? `border-r-2 ${role.borderColor} pr-2 mr-2` : ''}
-                    `}
-                  >
-                    {role.text}
-                    <span className="absolute inset-0 bg-gradient-to-r ${role.gradient} opacity-0 group-hover:opacity-10 rounded-md transition-opacity duration-300"></span>
-                  </span>
-                </React.Fragment>
-              ))}
-            </div>
-          </h2>
-        </div>
-        <div className="max-w-3xl mx-auto text-xl md:text-2xl text-gray-400 leading-relaxed animate-fade-in-up animation-delay-400 min-h-[120px]">
-          <p className="inline-block px-2 py-1 bg-opacity-50 rounded-md bg-dark">
-            {typedText}
-            <span className="animate-blink text-green">|</span>
+
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-zinc-400 leading-relaxed pt-2">
+            Hi, I'm <span className="text-zinc-100 font-semibold">{personalInfo.name}</span>. 
+            Full-stack engineer & AI/ML undergraduate at Chitkara University. Designing resilient web architectures, intelligent automation pipelines, and high-performance user interfaces.
           </p>
-        </div>
-        <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+        </motion.div>
+
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-wrap items-center justify-center gap-3 pt-1"
+        >
+          {/* Explore Work */}
           <a
             href="#projects"
-            className="inline-flex items-center justify-center gap-3 px-10 py-4 text-lg font-bold tracking-wider uppercase transition duration-300 ease-in-out transform rounded-full shadow-2xl bg-gradient-to-r from-brightBlue to-green text-dark hover:from-green hover:to-brightBlue hover:-translate-y-1 hover:scale-105 group"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-100 text-zinc-950 font-semibold text-sm hover:bg-white transition-all shadow-lg hover:shadow-zinc-700/20 hover:scale-[1.02]"
           >
-            <span>Explore My Projects</span>
-            <svg 
-              className="w-6 h-6 ml-2 transition-transform group-hover:translate-x-2" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth={2} 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <span>Explore Work</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </a>
-          <a
-            href="https://drive.google.com/file/d/17Un-C0nrIjA-5zkfbo_XSaBanqLkLUCi/view?usp=drive_link"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-8 py-3 font-semibold transition rounded-full shadow-lg bg-green text-dark hover:bg-green-400 hover:text-dark animate-bounce-subtle animation-delay-200 group"
+
+          {/* View In-Browser Resume */}
+          <button
+            onClick={onOpenResume}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-zinc-900 border border-zinc-700/80 text-zinc-100 font-medium text-sm hover:bg-zinc-800 hover:border-zinc-500 transition-all cursor-pointer shadow-md group"
           >
-            Download Resume
-            <svg 
-              className="w-5 h-5 transition-transform group-hover:translate-x-1" 
-              fill="none" 
-              stroke="currentColor" 
-              strokeWidth={2} 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            <svg className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
             </svg>
-          </a>
-        </div>
+            <span>View Resume</span>
+          </button>
+
+          {/* Copy Email Button */}
+          <button
+            onClick={handleCopyEmail}
+            className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-200 font-medium text-sm hover:bg-zinc-800 hover:border-zinc-700 transition-all cursor-pointer shadow-md"
+          >
+            <svg className="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+              />
+            </svg>
+            <span>{copied ? 'Email Copied!' : 'Copy Email'}</span>
+          </button>
+
+          {/* Direct Social Links */}
+          <div className="flex items-center gap-2 pl-1">
+            <a
+              href="https://github.com/KeshavxGupta"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all shadow-sm"
+              aria-label="GitHub Profile"
+            >
+              <SiGithub className="w-4 h-4" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/keshav-gupta-751925324"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-full bg-zinc-900/90 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all shadow-sm"
+              aria-label="LinkedIn Profile"
+            >
+              <SiLinkedin className="w-4 h-4" />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* Interactive Developer Terminal Widget */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="pt-4"
+        >
+          <InteractiveTerminal onOpenResume={onOpenResume} />
+        </motion.div>
+
+        {/* Quick Highlights Strip */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="pt-6 border-t border-zinc-800/60 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto"
+        >
+          <div className="p-3 rounded-xl bg-zinc-900/40 border border-zinc-800/40 text-left">
+            <div className="text-xl font-bold text-zinc-100">Live Client Work</div>
+            <div className="text-xs text-zinc-500 font-medium">kanpurwatch.in E-Commerce</div>
+          </div>
+          <div className="p-3 rounded-xl bg-zinc-900/40 border border-zinc-800/40 text-left">
+            <div className="text-xl font-bold text-zinc-100">Hackmol 6.0</div>
+            <div className="text-xs text-zinc-500 font-medium">AgriTech ML Solution</div>
+          </div>
+          <div className="p-3 rounded-xl bg-zinc-900/40 border border-zinc-800/40 text-left">
+            <div className="text-xl font-bold text-zinc-100">18+</div>
+            <div className="text-xs text-zinc-500 font-medium">Cloud & AI Skill Badges</div>
+          </div>
+          <div className="p-3 rounded-xl bg-zinc-900/40 border border-zinc-800/40 text-left">
+            <div className="text-xl font-bold text-zinc-100">AI & ML Focus</div>
+            <div className="text-xs text-zinc-500 font-medium">Chitkara University</div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );
-}
+};
 
 export default Hero;

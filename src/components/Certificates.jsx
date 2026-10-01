@@ -1,373 +1,240 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-// Certificate Modal Component
-const CertificateModal = ({ imageUrl, title, onClose }) => {
-  return (
-    <motion.div
-      className='fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-70'
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
-    >
-      <motion.div
-        className='max-w-4xl w-full max-h-[90vh] bg-white rounded-xl shadow-2xl overflow-hidden'
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.8, opacity: 0 }}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <img 
-          src={imageUrl} 
-          alt={title} 
-          className='object-contain w-full h-full'
-        />
-        <button 
-          onClick={onClose}
-          className='absolute p-2 text-white transition-colors bg-red-500 rounded-full top-4 right-4 hover:bg-red-600'
-        >
-          Close
-        </button>
-      </motion.div>
-    </motion.div>
-  );
-};
+import { experienceTimeline, certificatesList } from '../data/portfolioData';
 
 const Certificates = () => {
-  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [selectedCert, setSelectedCert] = useState(null);
+  const [showAllCerts, setShowAllCerts] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('All');
 
-  // Open certificate or badge URL
-  const handleViewCertificate = (cert) => {
-    if (cert.badgeUrl) {
-      // If badge URL exists, open in a new tab
-      window.open(cert.badgeUrl, '_blank', 'noopener,noreferrer');
-    } else {
-      // Otherwise, open the image in the modal
-      setSelectedCertificate(cert);
-    }
-  };
+  const filters = ['All', 'Google Cloud', 'Coursera', 'Hackathon / Community'];
 
-  // Sample certificate data - replace with your actual certificates
-  const certificates = [
-    {
-      id: 1,
-      title: 'Digital Transformation in Financial Services',
-      issuer: 'Coursera',
-      year: 2025,
-      imageUrl: new URL('../assets/photos/certificate1.jpg', import.meta.url).href,
-    },
-    {
-      id: 2,
-      title: 'Natural Disaster and Climate Change Risk Assessment',
-      issuer: 'Coursera',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate2.jpg', import.meta.url).href,
-    },
-    {
-      id: 3,
-      title: 'Finance for Everyone',
-      issuer: 'Coursera',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate3.jpg', import.meta.url).href,
-    },
-    {
-      id: 4,
-      title: 'The Basics of Google Cloud Compute',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate4.png', import.meta.url).href,
-      badgeUrl: 'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/11892530',
-    },
-    {
-      id: 5,
-      title: 'Get Started with Cloud Storage',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate5.png', import.meta.url).href,
-      badgeUrl: 'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/11893706',
-    },
-    {
-      id: 6,
-      title: 'Get Started with Looker',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate6.png', import.meta.url).href,
-      badgeUrl: 'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/11978101'
-    },
-    {
-      id: 7,
-      title: 'Get Started with Dataplex',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate7.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12096729'
-    },
-    {
-      id: 8,
-      title: 'Cloud Run Functions: 3 Ways',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate8.png', import.meta.url).href,
-      badgeUrl: 'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12101031'
-    },
-    {
-      id: 9,
-      title: 'App Engine: 3 Ways',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate9.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12118124'
-    },
-    {
-      id: 10,
-      title: 'Get Started with API Gateway',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate10.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12120043'
-    },
-    {
-      id: 11,
-      title: 'Cloud Speech API: 3 Ways',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate11.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12179548'
-    },
-    {
-      id: 12,
-      title: 'Monitoring in Google Cloud',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate12.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12182633'
-    },
-    {
-      id: 13,
-      title: 'Networking Fundamentals on Google Cloud',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate13.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12222990'
-    },
-    {
-      id: 14,
-      title: 'Analyze Images with the Cloud Vision API',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate14.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12223644'
-    },
-    {
-      id: 15,
-      title: 'Get Started with Pub/Sub',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate15.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12223958'
-    },
-    {
-      id: 16,
-      title: 'Get Started with Google Workspace Tools',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate16.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12259968'
-    },
-    {
-      id: 17,
-      title: 'Prompt Design in Vertex AI',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate17.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12315604'
-    },
-    {
-      id: 18,
-      title: 'Develop GenAI Apps with Gemini and Streamlit',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate18.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12321784'
-    },
-    {
-      id: 19,
-      title: 'Level 3: Google Cloud Adventures',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate19.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12333674'
-    },
-    {
-      id: 20,
-      title: 'Introduction to Generative AI',
-      issuer: 'Google Cloud',
-      year: 2024,
-      imageUrl: new URL('../assets/photos/certificate20.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/12334028'
-    },
-    {
-      id: 21,
-      title: 'Build Real World AI Applications with Gemini and Imagen',
-      issuer: 'Google Cloud',
-      year: 2025,
-      imageUrl: new URL('../assets/photos/certificate21.png', import.meta.url).href,
-      badgeUrl:'https://www.cloudskillsboost.google/public_profiles/26a38628-c244-4cfa-a1f8-b27c08b7b1e1/badges/15293770'
-    },
-    {
-      id: 22,
-      title: 'Certificate of Participation of Workshop in Collaboration with Nextleap',
-      issuer: 'Nextleap',
-      year: 2025,
-      imageUrl: new URL('../assets/photos/certificate22.jpg', import.meta.url).href,
-    },
-    {
-      id: 23,
-      title: 'Hackmol 6.0',
-      issuer: 'GDG NIT Jalandhar',
-      year: 2025,
-      imageUrl: new URL('../assets/photos/certificate23.png', import.meta.url).href,
-    },
-    {
-      id: 24,
-      title: 'VR Wellness: Innovating Mental Health Through Virtual Reality',
-      issuer: 'GFG CUIET Student Chapter',
-      year: 2025,
-      imageUrl: new URL('../assets/photos/certificate24.png', import.meta.url).href,
-    },
-    {
-      id: 25,
-      title: 'Google Study Jam ',
-      issuer: 'GDG Chitkara University',
-      year: 2025,
-      imageUrl: new URL('../assets/photos/certificate25.jpg', import.meta.url).href,
-    },
-    {
-      id: 26,
-      title: 'Build With India',
-      issuer: 'Hack With India',
-      year: 2025,
-      imageUrl: new URL('../assets/photos/certificate26.png', import.meta.url).href,
+  const filteredCerts = certificatesList.filter((cert) => {
+    if (activeFilter === 'All') return true;
+    if (activeFilter === 'Google Cloud') return cert.issuer.includes('Google Cloud');
+    if (activeFilter === 'Coursera') return cert.issuer.includes('Coursera');
+    if (activeFilter === 'Hackathon / Community') {
+      return !cert.issuer.includes('Google Cloud') && !cert.issuer.includes('Coursera');
     }
-  ];
+    return true;
+  });
+
+  const displayedCerts = showAllCerts ? filteredCerts : filteredCerts.slice(0, 6);
 
   return (
-    <section 
-      id='certificates' 
-      className='relative flex flex-col items-center justify-center min-h-screen px-4 text-white bg-gradient-to-b from-[#121212] via-[#1a232a] to-[#121212] overflow-hidden py-16 md:py-24'
-    >
-      {/* Animated Background Elements */}
-      <div className='absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-10'>
-        <div className='absolute animate-pulse top-[10%] left-[5%] w-24 h-24 bg-brightBlue rounded-full blur-3xl'></div>
-        <div className='absolute animate-pulse top-[70%] right-[15%] w-32 h-32 bg-green rounded-full blur-3xl'></div>
-        <div className='absolute animate-pulse bottom-[20%] left-[30%] w-16 h-16 bg-cyan-500 rounded-full blur-3xl'></div>
-      </div>
+    <section id="experience" className="py-24 px-4 sm:px-6">
+      <div className="max-w-5xl mx-auto space-y-20">
+        
+        {/* Subsection 1: Hackathons & Academic Milestones */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="space-y-8"
+        >
+          <div className="space-y-2">
+            <div className="text-xs uppercase tracking-wider font-semibold text-zinc-500">
+              Trajectory & Milestones
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              Experience & Hackathons
+            </h2>
+          </div>
 
-      <div className='relative z-10 w-full max-w-6xl px-4 mx-auto'>
-        <h2 className='text-4xl md:text-6xl font-extrabold tracking-normal text-white bg-clip-text bg-gradient-to-r from-cyan-400 via-brightBlue to-green animate-fade-in-up mb-12 md:mb-20 text-center w-full leading-[1.1] hover:bg-gradient-to-l transition-all duration-500'>
-          Certificates
-        </h2>
-
-        {/* Dynamic Certificates Showcase */}
-        <div className='relative w-full px-4 overflow-hidden group md:px-8 lg:px-16'>
-          <div className='absolute inset-y-0 left-0 w-16 md:w-24 bg-gradient-to-r from-[#121212] to-transparent z-10 pointer-events-none' />
-          <div className='absolute inset-y-0 right-0 w-16 md:w-24 bg-gradient-to-l from-[#121212] to-transparent z-10 pointer-events-none' />
-          
-          <motion.div
-            className='flex w-full py-4 space-x-6 scrollbar-hide'
-            drag='x'
-            dragConstraints={{ left: -(certificates.length * 280), right: 0 }}
-            dragElastic={0.3}
-            initial={{ x: 0 }}
-            style={{
-              display: 'inline-flex',
-              overscrollBehaviorX: 'contain',
-              WebkitOverflowScrolling: 'touch'
-            }}
-          >
-            {certificates.map((cert, index) => (
-              <motion.div 
-                key={`${cert.id}-${index}`} 
-                className='flex-shrink-0 w-72 bg-gradient-to-br from-[#1e2630] to-[#2c3e50] rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-300 hover:scale-[1.03] group'
-                whileHover={{ 
-                  scale: 1.05,
-                  transition: { duration: 0.2 }
-                }}
-                initial={{ 
-                  opacity: 0.7,
-                  filter: 'grayscale(50%)'
-                }}
-                whileInView={{ 
-                  opacity: 1,
-                  filter: 'grayscale(0%)',
-                  transition: { 
-                    duration: 0.4,
-                    type: 'spring',
-                    stiffness: 100
-                  }
-                }}
+          <div className="relative pl-6 border-l border-zinc-800 space-y-8">
+            {experienceTimeline.map((item, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -15 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="relative group"
               >
-                <div className='relative flex items-center justify-center w-full h-56 overflow-hidden rounded-t-2xl bg-white/10 backdrop-blur-sm'>
-                  <div className='absolute inset-0 z-10 transition-opacity duration-300 opacity-0 bg-gradient-to-b from-transparent to-black/30 group-hover:opacity-100'></div>
-                  <img 
-                    src={cert.imageUrl} 
-                    alt={cert.title} 
-                    loading='lazy'
-                    decoding='async'
-                    className='max-w-full max-h-full object-contain p-2 transition-all duration-300 group-hover:scale-[1.02] rounded-xl shadow-lg'
-                    style={{
-                      filter: 'brightness(1.1) contrast(1.05) saturate(1.1)',
-                      mixBlendMode: 'normal'
-                    }}
-                  />
-                </div>
-                <div className='p-5 bg-[#2c3e50]/50 backdrop-blur-sm relative'>
-                  {cert.issuer === 'Google Cloud' && (
-                    <motion.div
-                      className='absolute top-0 right-0 px-3 py-1 text-xs font-bold text-white bg-blue-600 rounded-bl-xl'
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ 
-                        type: 'spring', 
-                        stiffness: 300,
-                        delay: 0.2
-                      }}
-                    >
-                      Cloud Certified
-                    </motion.div>
-                  )}
-                  <h3 className='mb-2 text-lg font-bold transition-colors duration-300 text-cyan-300 group-hover:text-cyan-200'>
-                    {cert.title}
-                  </h3>
-                  <div className='flex items-center justify-between mb-2'>
-                    <p className='text-sm text-gray-300 opacity-80'>{cert.issuer}</p>
-                    <span className='text-sm font-semibold text-cyan-400'>{cert.year}</span>
+                {/* Timeline Node Dot */}
+                <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-zinc-900 border-2 border-zinc-600 group-hover:border-cyan-400 transition-colors" />
+
+                <div className="rounded-2xl bg-zinc-900/60 border border-zinc-800/80 backdrop-blur-xl p-5 sm:p-6 space-y-2 hover:border-zinc-700/80 transition-all duration-300">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="text-xs font-semibold px-2.5 py-0.5 rounded-md bg-zinc-800 text-zinc-300">
+                      {item.type}
+                    </span>
+                    <span className="text-xs text-zinc-500 font-medium">
+                      {item.period}
+                    </span>
                   </div>
-                  <motion.button
-                    onClick={() => handleViewCertificate(cert)}
-                    className='w-full py-2 text-white transition-colors rounded-md bg-cyan-700 hover:bg-cyan-600'
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {cert.badgeUrl ? 'View Badge' : 'View Certificate'}
-                  </motion.button>
+
+                  <h3 className="text-base font-bold text-white">
+                    {item.role}
+                  </h3>
+
+                  <div className="text-xs text-cyan-400 font-medium">
+                    {item.organization}
+                  </div>
+
+                  <p className="text-xs text-zinc-400 leading-relaxed pt-1">
+                    {item.details}
+                  </p>
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Subsection 2: Verified Certifications */}
+        <div className="space-y-8 pt-8 border-t border-zinc-800/80">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div className="space-y-2">
+              <div className="text-xs uppercase tracking-wider font-semibold text-zinc-500">
+                Credentials & Badges
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                Verified Certifications
+              </h3>
+            </div>
+            <p className="text-xs text-zinc-400">
+              Showing {displayedCerts.length} of {filteredCerts.length} verified credentials
+            </p>
+          </div>
+
+          {/* Filter Pills */}
+          <div className="flex flex-wrap gap-2">
+            {filters.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => {
+                  setActiveFilter(filter);
+                  setShowAllCerts(false);
+                }}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-medium transition-all cursor-pointer ${
+                  activeFilter === filter
+                    ? 'bg-zinc-100 text-zinc-950 font-semibold shadow-sm'
+                    : 'bg-zinc-900/80 border border-zinc-800 text-zinc-400 hover:text-zinc-200'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          {/* Certificates Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {displayedCerts.map((cert) => (
+              <div
+                key={cert.id}
+                onClick={() => setSelectedCert(cert)}
+                className="rounded-xl bg-zinc-900/60 border border-zinc-800/80 backdrop-blur-xl p-4 flex flex-col justify-between gap-3 cursor-pointer group hover:border-zinc-700/80 transition-all duration-300"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between text-[11px] text-zinc-500">
+                    <span>{cert.issuer}</span>
+                    <span>{cert.year}</span>
+                  </div>
+                  <h4 className="text-xs font-semibold text-zinc-200 group-hover:text-white line-clamp-2">
+                    {cert.title}
+                  </h4>
+                </div>
+
+                <div className="flex items-center justify-between pt-2 border-t border-zinc-800/60 text-[11px]">
+                  <span className="text-cyan-400 group-hover:underline">
+                    View Certificate
+                  </span>
+                  {cert.badgeUrl && (
+                    <span className="text-zinc-500 text-[10px]">
+                      Verified Badge
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Show More / Show Less Toggle */}
+          {filteredCerts.length > 6 && (
+            <div className="flex justify-center pt-2">
+              <button
+                onClick={() => setShowAllCerts(!showAllCerts)}
+                className="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-xs font-medium text-zinc-300 hover:text-white hover:border-zinc-700 transition-colors cursor-pointer"
+              >
+                {showAllCerts ? 'Show Less' : `View All ${filteredCerts.length} Credentials`}
+              </button>
+            </div>
+          )}
         </div>
+
       </div>
-      
-      {/* Certificate Modal */}
+
+      {/* Modern Certificate Modal */}
       <AnimatePresence>
-        {selectedCertificate && (
-          <CertificateModal
-            imageUrl={selectedCertificate.imageUrl}
-            title={selectedCertificate.title}
-            onClose={() => setSelectedCertificate(null)}
-          />
+        {selectedCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/85 backdrop-blur-md"
+            onClick={() => setSelectedCert(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="relative w-full max-w-2xl bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-2xl space-y-4"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-base font-bold text-white">
+                    {selectedCert.title}
+                  </h3>
+                  <p className="text-xs text-zinc-400">
+                    {selectedCert.issuer} ({selectedCert.year})
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  className="p-1.5 rounded-lg bg-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-700 transition-colors cursor-pointer"
+                  aria-label="Close Modal"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="max-h-[60vh] overflow-hidden rounded-xl bg-zinc-950 border border-zinc-800 flex items-center justify-center">
+                <img
+                  src={selectedCert.imageUrl}
+                  alt={selectedCert.title}
+                  className="w-full h-auto max-h-[55vh] object-contain"
+                />
+              </div>
+
+              <div className="flex items-center justify-between pt-2">
+                {selectedCert.badgeUrl ? (
+                  <a
+                    href={selectedCert.badgeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs text-cyan-400 hover:underline"
+                  >
+                    <span>Verify External Credential</span>
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                ) : (
+                  <span className="text-xs text-zinc-500">Verified Certificate</span>
+                )}
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  className="px-3.5 py-1.5 text-xs font-medium bg-zinc-800 hover:bg-zinc-700 text-zinc-200 rounded-lg transition-colors cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
         )}
       </AnimatePresence>
     </section>

@@ -1,85 +1,137 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { skillCategories } from '../data/portfolioData';
 import { 
-  SiHtml5, 
-  SiCss3, 
-  SiJavascript, 
-  SiTailwindcss, 
-  SiBootstrap, 
-  SiPython, 
-  SiSqlite, 
-  SiGit, 
-  SiGithub,
-  SiCplusplus,
-  SiFlask,
-  SiDjango,
-  SiPostman,
-  SiNodedotjs,
-  SiExpress
+  SiPython, SiCplusplus, SiJavascript, SiHtml5, SiCss3, SiSqlite,
+  SiReact, SiTailwindcss, SiVite, SiFramer,
+  SiNodedotjs, SiExpress, SiFlask, SiDjango,
+  SiGit, SiGithub, SiGooglecloud, SiPostman, SiLinux
 } from 'react-icons/si';
 
+const iconMap = {
+  'Python': { icon: SiPython, color: '#38bdf8' },
+  'C++': { icon: SiCplusplus, color: '#60a5fa' },
+  'JavaScript (ES6+)': { icon: SiJavascript, color: '#facc15' },
+  'HTML5': { icon: SiHtml5, color: '#f97316' },
+  'CSS3': { icon: SiCss3, color: '#38bdf8' },
+  'SQL': { icon: SiSqlite, color: '#93c5fd' },
+  'React.js': { icon: SiReact, color: '#22d3ee' },
+  'Tailwind CSS': { icon: SiTailwindcss, color: '#06b6d4' },
+  'Vite': { icon: SiVite, color: '#a855f7' },
+  'Framer Motion': { icon: SiFramer, color: '#ec4899' },
+  'Node.js': { icon: SiNodedotjs, color: '#4ade80' },
+  'Express.js': { icon: SiExpress, color: '#e4e4e7' },
+  'Flask': { icon: SiFlask, color: '#e4e4e7' },
+  'Django': { icon: SiDjango, color: '#34d399' },
+  'SQLite': { icon: SiSqlite, color: '#93c5fd' },
+  'Git & GitHub': { icon: SiGithub, color: '#e4e4e7' },
+  'Google Cloud Platform': { icon: SiGooglecloud, color: '#60a5fa' },
+  'Postman': { icon: SiPostman, color: '#fb923c' },
+  'Linux / Bash': { icon: SiLinux, color: '#fbbf24' }
+};
+
 const Skill = () => {
-  const skills = [
-    { name: 'HTML', icon: SiHtml5, color: '#E34F26' },
-    { name: 'CSS', icon: SiCss3, color: '#1572B6' },
-    { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
-    { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#06B6D4' },
-    { name: 'Bootstrap', icon: SiBootstrap, color: '#7952B3' },
-    { name: 'Python', icon: SiPython, color: '#3776AB' },
-    { name: 'SQLite', icon: SiSqlite, color: '#003B57' },
-    { name: 'Git', icon: SiGit, color: '#F05032' },
-    { name: 'GitHub', icon: SiGithub, color: '#181717' },
-    { name: 'C++', icon: SiCplusplus, color: '#00599C' },
-    { name: 'Flask', icon: SiFlask, color: '#000000' },
-    { name: 'Django', icon: SiDjango, color: '#092E20' },
-    { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
-    { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-    { name: 'Express.js', icon: SiExpress, color: '#000000' }
-  ];
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
   return (
-    <section id='skills' className='relative flex flex-col items-center justify-center min-h-screen px-4 text-white bg-gradient-to-b from-[#121212] via-[#1a232a] to-[#121212] overflow-hidden py-16 md:py-24'>
-      {/* Animated Background Elements */}
-      <div className='absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none overflow-hidden'>
-        <div className='absolute animate-pulse top-[10%] left-[5%] w-24 h-24 bg-brightBlue rounded-full blur-3xl'></div>
-        <div className='absolute animate-pulse top-[70%] right-[15%] w-32 h-32 bg-green rounded-full blur-3xl'></div>
-        <div className='absolute animate-pulse bottom-[20%] left-[30%] w-16 h-16 bg-cyan-500 rounded-full blur-3xl'></div>
-      </div>
-      <div className='relative z-10 w-full max-w-6xl px-4 mx-auto'>
-        <motion.h2 
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className='text-4xl md:text-6xl font-extrabold tracking-normal text-white bg-clip-text bg-gradient-to-r from-cyan-400 via-brightBlue to-green animate-fade-in-up mb-12 md:mb-20 text-center w-full leading-[1.1] hover:bg-gradient-to-l transition-all duration-500'
-        >
-          Technologies I Use
-        </motion.h2>
-        <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 lg:gap-8 justify-center items-center'>
-          {skills.map((skill, index) => {
-            const SkillIcon = skill.icon;
-            return (
-              <motion.div 
-                key={skill.name}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ 
-                  duration: 0.3, 
-                  delay: index * 0.1,
-                  type: 'spring',
-                  stiffness: 200
-                }}
-                className='flex flex-col items-center justify-center p-3 md:p-4 bg-[#1a232a] rounded-lg shadow-md hover:shadow-2xl transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:bg-[#2a3340] border border-[#2a3340] hover:border-brightBlue'
-                title={skill.name}
-              >
-                <SkillIcon 
-                  className='text-4xl md:text-5xl mb-2'
-                  style={{ color: skill.color }}
-                />
-                <span className='text-sm text-gray-300 group-hover:text-white'>{skill.name}</span>
-              </motion.div>
-            );
-          })}
+    <section id="skills" className="py-24 px-4 sm:px-6">
+      <div className="max-w-5xl mx-auto space-y-12">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-2">
+            <div className="text-xs uppercase tracking-wider font-semibold text-zinc-500">
+              Technical Capabilities
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+              Skills & Architecture
+            </h2>
+          </div>
+          <p className="text-sm text-zinc-400 max-w-md">
+            Click any technology badge to inspect role, usage, and system context across Keshav's stack.
+          </p>
         </div>
+
+        {/* 4-Card Bento Grid with Framer Motion */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {skillCategories.map((category, catIdx) => (
+            <motion.div
+              key={category.category}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.5, delay: catIdx * 0.1 }}
+              className="rounded-2xl bg-zinc-900/60 border border-zinc-800/80 backdrop-blur-xl p-6 sm:p-8 space-y-6 flex flex-col justify-between hover:border-zinc-700/80 transition-all duration-300"
+            >
+              <div className="space-y-2">
+                <h3 className="text-lg font-bold text-zinc-100 tracking-tight">
+                  {category.category}
+                </h3>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  {category.description}
+                </p>
+              </div>
+
+              {/* Skills Badges with Icons */}
+              <div className="flex flex-wrap gap-2.5 pt-2">
+                {category.skills.map((skillName) => {
+                  const meta = iconMap[skillName];
+                  const Icon = meta ? meta.icon : null;
+                  const iconColor = meta ? meta.color : '#a1a1aa';
+                  const isSelected = selectedSkill === skillName;
+
+                  return (
+                    <button
+                      key={skillName}
+                      type="button"
+                      onClick={() => setSelectedSkill(isSelected ? null : skillName)}
+                      className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs transition-all duration-200 cursor-pointer ${
+                        isSelected
+                          ? 'bg-zinc-100 text-zinc-950 font-semibold border-white shadow-lg scale-105'
+                          : 'bg-zinc-950/80 border-zinc-800 text-zinc-200 hover:border-zinc-600 hover:text-white'
+                      }`}
+                    >
+                      {Icon && (
+                        <Icon
+                          className="w-3.5 h-3.5 flex-shrink-0"
+                          style={{ color: isSelected ? '#18181b' : iconColor }}
+                        />
+                      )}
+                      <span>{skillName}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Selected Skill Detail Inspector Drawer */}
+        {selectedSkill && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            className="p-5 rounded-2xl bg-zinc-900/90 border border-zinc-700/80 backdrop-blur-xl flex items-center justify-between gap-4"
+          >
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                <span className="text-xs font-bold text-white uppercase tracking-wider">
+                  Technology Inspector: {selectedSkill}
+                </span>
+              </div>
+              <p className="text-xs text-zinc-300">
+                Applied actively in production architecture, REST microservices, hackathons, and responsive full-stack applications.
+              </p>
+            </div>
+            <button
+              onClick={() => setSelectedSkill(null)}
+              className="px-3 py-1 text-xs rounded-lg bg-zinc-800 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+            >
+              Dismiss
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

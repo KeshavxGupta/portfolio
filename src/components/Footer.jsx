@@ -1,45 +1,56 @@
 import React from "react";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { SiGithub, SiLinkedin, SiMedium } from "react-icons/si";
+import { FaXTwitter } from "react-icons/fa6";
+import { personalInfo } from "../data/portfolioData";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className='relative flex flex-col items-center justify-center text-white bg-gradient-to-b from-[#121212] via-[#1a232a] to-[#121212] overflow-hidden py-16 md:py-24'>
-      {/* Animated Background Elements */}
-      <div className='absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none overflow-hidden'>
-      </div>
-      <div className="relative z-10 w-full max-w-6xl px-4 mx-auto">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-          <div className="text-center md:text-left mb-4 md:mb-0">
-            <p className="text-sm text-gray-400">&copy; {currentYear} Keshav Gupta. All Rights Reserved.</p>
-          </div>
-          <div className="flex space-x-6">
-            <a
-              href="https://github.com/KeshavxGupta"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl hover:text-sand transition-colors duration-300"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href="https://linkedin.com/in/keshav-gupta-751925324"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl hover:text-sand transition-colors duration-300"
-            >
-              <FaLinkedin />
-            </a>
-            <a
-              href="https://twitter.com/Keshav463387401"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl hover:text-sand transition-colors duration-300"
-            >
-              <FaTwitter />
-            </a>
-          </div>
+    <footer className="border-t border-zinc-800/80 py-10 px-4 sm:px-6">
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+        <div className="flex items-center gap-2">
+          <span>&copy; {currentYear} {personalInfo.name}.</span>
+          <span className="hidden sm:inline">All rights reserved.</span>
+        </div>
+
+        <div className="flex items-center gap-4 text-zinc-400">
+          <a
+            href="https://github.com/KeshavxGupta"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-zinc-200 transition-colors"
+            aria-label="GitHub"
+          >
+            <SiGithub className="w-4 h-4" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/keshav-gupta-751925324"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-zinc-200 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <SiLinkedin className="w-4 h-4" />
+          </a>
+          <a
+            href="https://twitter.com/Keshav463387401"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-zinc-200 transition-colors"
+            aria-label="X / Twitter"
+          >
+            <FaXTwitter className="w-4 h-4" />
+          </a>
+          <a
+            href="https://medium.com/@keshavg60353"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-zinc-200 transition-colors"
+            aria-label="Medium"
+          >
+            <SiMedium className="w-4 h-4" />
+          </a>
         </div>
       </div>
     </footer>
